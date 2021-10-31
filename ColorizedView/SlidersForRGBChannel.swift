@@ -23,9 +23,9 @@ struct SlidersForRGBChannel: View {
     var body: some View {
         HStack {
             VStack {
-                ColorChannelSlider(value: $red, color: .red)
-                ColorChannelSlider(value: $green, color: .green)
-                ColorChannelSlider(value: $blue, color: .blue)
+                ColorChannelSlider(value: $red, color: .red, tapOnSliderEvent: hideKeyboard)
+                ColorChannelSlider(value: $green, color: .green, tapOnSliderEvent: hideKeyboard)
+                ColorChannelSlider(value: $blue, color: .blue, tapOnSliderEvent: hideKeyboard)
             }
             VStack {
                 ColorChannelTextField(value: $red)
@@ -40,9 +40,6 @@ struct SlidersForRGBChannel: View {
                     keyboardToolbar
                 }
             }
-        }
-        .onTapGesture() {
-            focusedField = nil
         }
     }
 
@@ -84,16 +81,23 @@ struct ColorChannelSlider: View {
     @Binding var value: Double
 
     let color: Color
+    let tapOnSliderEvent: () -> Void
 
     var body: some View {
         HStack {
             Text("0")
                 .foregroundColor(.white)
-            Slider(value: $value, in: 0...255, step: 1)
+            Slider(value: $value, in: 0...255, step: 1, onEditingChanged: hideKeyboard)
                 .tint(color)
 
             Text("255")
                 .foregroundColor(.white)
+        }
+    }
+    
+    private func hideKeyboard(editingChanged: Bool) {
+        if editingChanged {
+            tapOnSliderEvent()
         }
     }
 }
@@ -132,7 +136,7 @@ struct SlidersForRGBChannel_Previews: PreviewProvider {
 
             VStack(spacing: 100) {
                 SlidersForRGBChannel(red: .constant(60), green: .constant(60), blue: .constant(60))
-                ColorChannelSlider(value: .constant(60), color: .cyan)
+                ColorChannelSlider(value: .constant(60), color: .cyan, tapOnSliderEvent: {})
                 ColorChannelTextField(value: .constant(60))
             }
         }
