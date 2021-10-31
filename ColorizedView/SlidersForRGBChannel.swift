@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SlidersForRGBChannel: View {
-    enum Field {
+    private enum Field {
         case red
         case green
         case blue
@@ -113,7 +113,7 @@ struct ColorChannelTextField: View {
         if !editingChanged {
             if value > 255 {
                 value = 255
-            } else {
+            } else if value < 0 {
                 value = 0
             }
         }

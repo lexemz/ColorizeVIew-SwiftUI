@@ -15,7 +15,7 @@ struct ColorizedView: View {
     var body: some View {
 
         RoundedRectangle(cornerRadius: 40)
-            .frame(height: 150)
+            .frame(height: 120)
             .foregroundColor(
                 Color(
                     red: red / 255,
