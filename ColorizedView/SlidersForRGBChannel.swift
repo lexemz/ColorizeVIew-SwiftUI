@@ -36,23 +36,25 @@ struct SlidersForRGBChannel: View {
             }
             .toolbar {
                 ToolbarItem(placement: .keyboard) {
-                    HStack {
-                        Button(action: nextBarButtonPressed) {
-                            Label("Next", systemImage: "chevron.down")
-                        }
-                        Button(action: prevBarButtonPressed) {
-                            Label("Prev", systemImage: "chevron.up")
-                        }
-                        Spacer()
-                        Button("Done") {
-                            hideKeyboard()
-                        }
-                    }
+                    keyboardToolbar
                 }
             }
         }
     }
-    
+
+    private var keyboardToolbar: some View {
+        HStack {
+            Button(action: prevBarButtonPressed) {
+                Label("Prev", systemImage: "chevron.up")
+            }
+            Button(action: nextBarButtonPressed) {
+                Label("Next", systemImage: "chevron.down")
+            }
+            Spacer()
+            Button("Done", action: hideKeyboard)
+        }
+    }
+
     private func nextBarButtonPressed() {
         switch focusedField {
         case .red: focusedField = .green
@@ -60,7 +62,7 @@ struct SlidersForRGBChannel: View {
         default: hideKeyboard()
         }
     }
-    
+
     private func prevBarButtonPressed() {
         switch focusedField {
         case .blue: focusedField = .green
@@ -68,7 +70,7 @@ struct SlidersForRGBChannel: View {
         default: break
         }
     }
-    
+
     private func hideKeyboard() {
         focusedField = nil
     }
