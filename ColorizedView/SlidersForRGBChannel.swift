@@ -17,6 +17,7 @@ struct SlidersForRGBChannel: View {
     @Binding var red: Double
     @Binding var green: Double
     @Binding var blue: Double
+    
     @FocusState private var focusedField: Field?
 
     var body: some View {
@@ -85,7 +86,7 @@ struct ColorChannelSlider: View {
         HStack {
             Text("0")
                 .foregroundColor(.white)
-            Slider(value: $value, in: 0 ... 255, step: 1)
+            Slider(value: $value, in: 0...255, step: 1)
                 .tint(color)
 
             Text("255")
@@ -98,7 +99,7 @@ struct ColorChannelTextField: View {
     @Binding var value: Double
 
     var body: some View {
-        TextField("", value: $value, formatter: NumberFormatter())
+        TextField("", value: $value, formatter: NumberFormatter(), onEditingChanged: checkValue)
             .cornerRadius(10)
             .multilineTextAlignment(.center)
             .frame(width: 65)
@@ -106,6 +107,16 @@ struct ColorChannelTextField: View {
             .overlay(Capsule().stroke(lineWidth: 2))
             .foregroundColor(.white)
             .keyboardType(.decimalPad)
+    }
+    
+    private func checkValue(editingChanged: Bool) {
+        if !editingChanged {
+            if value > 255 {
+                value = 255
+            } else {
+                value = 0
+            }
+        }
     }
 }
 
