@@ -8,16 +8,69 @@
 import SwiftUI
 
 struct SlidersForRGBChannel: View {
+    enum Field {
+        case red
+        case green
+        case blue
+    }
+
     @Binding var red: Double
     @Binding var green: Double
     @Binding var blue: Double
+    @FocusState private var focusedField: Field?
 
     var body: some View {
-        VStack {
-            ColorChannelSlider(value: $red, color: .red)
-            ColorChannelSlider(value: $green, color: .green)
-            ColorChannelSlider(value: $blue, color: .blue)
+        HStack {
+            VStack {
+                ColorChannelSlider(value: $red, color: .red)
+                ColorChannelSlider(value: $green, color: .green)
+                ColorChannelSlider(value: $blue, color: .blue)
+            }
+            VStack {
+                ColorChannelTextField(value: $red)
+                    .focused($focusedField, equals: .red)
+                ColorChannelTextField(value: $green)
+                    .focused($focusedField, equals: .green)
+                ColorChannelTextField(value: $blue)
+                    .focused($focusedField, equals: .blue)
+            }
+            .toolbar {
+                ToolbarItem(placement: .keyboard) {
+                    HStack {
+                        Button(action: nextBarButtonPressed) {
+                            Label("Next", systemImage: "chevron.down")
+                        }
+                        Button(action: prevBarButtonPressed) {
+                            Label("Prev", systemImage: "chevron.up")
+                        }
+                        Spacer()
+                        Button("Done") {
+                            hideKeyboard()
+                        }
+                    }
+                }
+            }
         }
+    }
+    
+    private func nextBarButtonPressed() {
+        switch focusedField {
+        case .red: focusedField = .green
+        case .green: focusedField = .blue
+        default: hideKeyboard()
+        }
+    }
+    
+    private func prevBarButtonPressed() {
+        switch focusedField {
+        case .blue: focusedField = .green
+        case .green: focusedField = .red
+        default: break
+        }
+    }
+    
+    private func hideKeyboard() {
+        focusedField = nil
     }
 }
 
@@ -35,8 +88,6 @@ struct ColorChannelSlider: View {
 
             Text("255")
                 .foregroundColor(.white)
-
-            ColorChannelTextField(value: $value)
         }
     }
 }
@@ -49,7 +100,7 @@ struct ColorChannelTextField: View {
             .cornerRadius(10)
             .multilineTextAlignment(.center)
             .frame(width: 65)
-            .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
+            .padding(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
             .overlay(Capsule().stroke(lineWidth: 2))
             .foregroundColor(.white)
             .keyboardType(.decimalPad)
@@ -62,7 +113,7 @@ struct SlidersForRGBChannel_Previews: PreviewProvider {
         ZStack {
             Color(.black)
                 .ignoresSafeArea()
-            
+
             VStack(spacing: 100) {
                 SlidersForRGBChannel(red: .constant(60), green: .constant(60), blue: .constant(60))
                 ColorChannelSlider(value: .constant(60), color: .cyan)
