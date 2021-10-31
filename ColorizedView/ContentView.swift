@@ -17,12 +17,10 @@ struct ContentView: View {
             Color(.black)
                 .ignoresSafeArea()
 
-            VStack {
+            VStack(spacing: 16) {
                 ColorizedView(red: redChannel, green: greenChannel, blue: blueChannel)
                 SlidersForRGBChannel(red: $redChannel, green: $greenChannel, blue: $blueChannel)
-                    .padding(.top, 20)
                 Spacer()
-                
             }
             .padding()
         }
