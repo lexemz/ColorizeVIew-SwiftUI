@@ -8,9 +8,24 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var redChannel = Double.random(in: 0...255)
+    @State private var greenChannel = Double.random(in: 0...255)
+    @State private var blueChannel = Double.random(in: 0...255)
+
     var body: some View {
-        Text("Hello, world!")
+        ZStack {
+            Color(.black)
+                .ignoresSafeArea()
+
+            VStack {
+                ColorizedView(red: redChannel, green: greenChannel, blue: blueChannel)
+                Spacer()
+                SlidersForRGBChannel(red: $redChannel, green: $greenChannel, blue: $blueChannel)
+                
+            }
             .padding()
+        }
+
     }
 }
 
@@ -19,3 +34,6 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
+
+

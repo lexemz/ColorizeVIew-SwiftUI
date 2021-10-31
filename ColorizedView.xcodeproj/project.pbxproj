@@ -11,6 +11,8 @@
 		781AFF76272EEB5100E8BF6A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781AFF75272EEB5100E8BF6A /* ContentView.swift */; };
 		781AFF78272EEB5300E8BF6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 781AFF77272EEB5300E8BF6A /* Assets.xcassets */; };
 		781AFF7B272EEB5300E8BF6A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 781AFF7A272EEB5300E8BF6A /* Preview Assets.xcassets */; };
+		781AFF82272EF3BE00E8BF6A /* ColorizedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781AFF81272EF3BE00E8BF6A /* ColorizedView.swift */; };
+		781AFF86272F016D00E8BF6A /* SlidersForRGBChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781AFF85272F016D00E8BF6A /* SlidersForRGBChannel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		781AFF75272EEB5100E8BF6A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		781AFF77272EEB5300E8BF6A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		781AFF7A272EEB5300E8BF6A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		781AFF81272EF3BE00E8BF6A /* ColorizedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorizedView.swift; sourceTree = "<group>"; };
+		781AFF85272F016D00E8BF6A /* SlidersForRGBChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidersForRGBChannel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +57,8 @@
 			children = (
 				781AFF73272EEB5100E8BF6A /* ColorizedViewApp.swift */,
 				781AFF75272EEB5100E8BF6A /* ContentView.swift */,
+				781AFF81272EF3BE00E8BF6A /* ColorizedView.swift */,
+				781AFF85272F016D00E8BF6A /* SlidersForRGBChannel.swift */,
 				781AFF77272EEB5300E8BF6A /* Assets.xcassets */,
 				781AFF79272EEB5300E8BF6A /* Preview Content */,
 			);
@@ -139,6 +145,8 @@
 			files = (
 				781AFF76272EEB5100E8BF6A /* ContentView.swift in Sources */,
 				781AFF74272EEB5100E8BF6A /* ColorizedViewApp.swift in Sources */,
+				781AFF86272F016D00E8BF6A /* SlidersForRGBChannel.swift in Sources */,
+				781AFF82272EF3BE00E8BF6A /* ColorizedView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
