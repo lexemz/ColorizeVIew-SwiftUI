@@ -41,6 +41,9 @@ struct SlidersForRGBChannel: View {
                 }
             }
         }
+        .onTapGesture() {
+            focusedField = nil
+        }
     }
 
     private var keyboardToolbar: some View {
@@ -103,7 +106,7 @@ struct ColorChannelTextField: View {
             .cornerRadius(10)
             .multilineTextAlignment(.center)
             .frame(width: 65)
-            .padding(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
+            .padding(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
             .overlay(Capsule().stroke(lineWidth: 2))
             .foregroundColor(.white)
             .keyboardType(.decimalPad)

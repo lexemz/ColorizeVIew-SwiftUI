@@ -19,8 +19,9 @@ struct ContentView: View {
 
             VStack {
                 ColorizedView(red: redChannel, green: greenChannel, blue: blueChannel)
-                Spacer()
                 SlidersForRGBChannel(red: $redChannel, green: $greenChannel, blue: $blueChannel)
+                    .padding(.top, 20)
+                Spacer()
                 
             }
             .padding()
